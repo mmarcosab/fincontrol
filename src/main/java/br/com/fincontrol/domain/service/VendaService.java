@@ -2,12 +2,14 @@ package br.com.fincontrol.domain.service;
 
 import br.com.fincontrol.domain.model.Venda;
 
+import java.util.List;
+
 public interface VendaService {
 
     Venda criarRegistro(Venda venda);
-    Venda alterarRegistro(Venda venda);
-    Venda apagarRegistro(Integer codigo);
+    Venda alterarRegistro(Venda venda, Integer codigo);
+    void apagarRegistro(Integer codigo);
     Venda buscarRegistro(Integer codigo);
-    Venda buscarRegistros();
+    List<Venda> buscarRegistros();
 
 }
