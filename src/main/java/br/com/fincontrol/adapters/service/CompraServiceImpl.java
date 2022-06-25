@@ -8,6 +8,10 @@ import br.com.fincontrol.util.MapperUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Service
 @RequiredArgsConstructor
 public class CompraServiceImpl implements CompraService {
@@ -21,23 +25,32 @@ public class CompraServiceImpl implements CompraService {
     }
 
     @Override
-    public Compra alterarRegistro(Compra compra) {
-        return null;
+    public Compra alterarRegistro(Compra compra, Integer codigo) {
+        compra.setCodigo(codigo);
+        var compraArmazenada =  repository.save(MapperUtils.map(compra, CompraData.class));
+        return MapperUtils.map(compraArmazenada, Compra.class);
     }
 
     @Override
-    public Compra apagarRegistro(Integer codigo) {
-        return null;
+    public void apagarRegistro(Integer codigo) {
+        repository.deleteById(codigo);
     }
 
     @Override
     public Compra buscarRegistro(Integer codigo) {
-        return null;
+        var compraData = repository.findById(codigo);
+        return MapperUtils.map(compraData, Compra.class);
     }
 
     @Override
-    public Compra buscarRegistros() {
-        return null;
+    public List<Compra> buscarRegistros() {
+        // it's not so good, refactor it
+        var comprasData = repository.findAll();
+        List<Compra> compras = new ArrayList<>();
+        for(CompraData cd : comprasData){
+            compras.add(MapperUtils.map(cd, Compra.class));
+        }
+        return compras;
     }
 
 }

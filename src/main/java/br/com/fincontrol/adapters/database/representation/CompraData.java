@@ -19,7 +19,8 @@ public class CompraData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @Column(name = "id")
+    private Integer codigo;
 
     private String ticket;
 

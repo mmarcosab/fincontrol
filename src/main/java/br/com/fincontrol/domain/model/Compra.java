@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Compra {
 
-    private String codigo;
+    private Integer codigo;
     private String ticket;
     private BigDecimal valorNota;
     private Integer quantidade;
